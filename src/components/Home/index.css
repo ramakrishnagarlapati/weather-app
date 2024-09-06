@@ -1,0 +1,38 @@
+.home-page-bg-container {
+  background: rgb(9, 9, 121);
+  background: linear-gradient(
+    144deg,
+    rgb(97, 97, 255) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.home-page-container {
+  flex-grow: 1;
+  width: 90%;
+  max-width: 1024px;
+  margin: 50px auto;
+  background-color: aliceblue;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.home-page-heading {
+  max-width: 500px;
+  letter-spacing: 1px;
+  font-style: italic;
+  font-weight: 600;
+  margin: 16px 0;
+}
+.select-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 25px 0;
+}
+@media screen and (min-width: 768px) {
+  .home-page-container {
+    padding: 25px;
+  }
+}
