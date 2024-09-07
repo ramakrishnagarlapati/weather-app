@@ -33,13 +33,14 @@ const CityRow = ({ city, index }) => {
         setCurrTemp(String(Math.round(currTemp, 0)) + "°C");
         setTempMax(String(Math.round(tempMin, 0)) + "°C");
         setTempMin(String(Math.round(tempMax, 0)) + "°C");
+      } else {
+        // Set default values if there's an error during fetch
+        setCurrTemp("-");
+        setTempMax("-");
+        setTempMin("-");
       }
     } catch (error) {
       console.error("Error fetching weather data:", error);
-      // Set default values if there's an error during fetch
-      setCurrTemp("-");
-      setTempMax("-");
-      setTempMin("-");
     }
   };
 
