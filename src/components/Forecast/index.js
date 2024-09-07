@@ -9,10 +9,9 @@ import {
 import "./index.css";
 
 const Forecast = ({ forecast }) => {
-  console.log(forecast);
   return (
     <>
-      <label className="title">Forecast for today every three hours</label>
+      <label className="title">Forecast for every three hours</label>
       <Accordion allowZeroExpanded>
         {forecast.map((item, index) => {
           return (
