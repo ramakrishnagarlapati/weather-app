@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { useHistory } from "react-router-dom";
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import CityRow from "../CityRow";
 import "./index.css";

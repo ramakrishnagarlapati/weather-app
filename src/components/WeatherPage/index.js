@@ -70,7 +70,7 @@ const WeatherPage = () => {
 
   // Function to render city weather information
   const renderCityWeather = () => {
-    const { weather, main, name, sys, wind } = cityWeather;
+    const { weather, main, name, wind } = cityWeather;
     const { description, icon } = weather[0];
 
     return (
