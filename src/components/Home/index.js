@@ -9,28 +9,28 @@ import "./index.css";
 import LoaderComponent from "../Loader";
 
 const Home = () => {
-  const history = useHistory();
-  const [isLoading, setIsLoading] = useState(true);
-  const [cities, setCities] = useState([]);
-  const [offset, setOffset] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
-  const [selectedCity, setSelectedCity] = useState(null);
+  const history = useHistory(); //to handle the navigation between pages
+  const [isLoading, setIsLoading] = useState(true); // State for loading status
+  const [cities, setCities] = useState([]); // List of cities to display
+  const [offset, setOffset] = useState(0); // Offset for fetching cities for infinite scroll
+  const [hasMore, setHasMore] = useState(true); // To check if more data is available for infinite scroll
 
-  // Sorting state
+  // State for sorting logic
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
 
-  // Fetch cities data for the infinite scroll
-
+  // Function to fetch cities data for infinite scroll
   const fetchCities = async () => {
     const url = `https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/geonames-all-cities-with-a-population-1000/records?limit=30&offset=${offset}`;
     try {
       const response = await fetch(url);
       const data = await response.json();
-
       const newCities = data.results;
-      setCities([...cities, ...newCities]);
-      setOffset(offset + 30);
 
+      // Append new cities to the current list
+      setCities([...cities, ...newCities]);
+      setOffset(offset + 30); // Increment offset for next fetch
+
+      // If no new cities are fetched, disable further scrolling
       if (newCities.length === 0) {
         setHasMore(false);
       }
@@ -39,18 +39,24 @@ const Home = () => {
     }
   };
 
+  // Load initial set of cities when component mounts
   useEffect(() => {
     fetchCities();
+
+    // Set loading to false after initial fetch
     setIsLoading(false);
   }, []);
 
   // Sorting function
   const sortCities = (key) => {
-    let direction = "asc";
+    let direction = "asc"; // Default direction to ascending
+
+    // If the current column is already sorted in ascending order, switch to descending
     if (sortConfig.key === key && sortConfig.direction === "asc") {
       direction = "desc";
     }
 
+    // Sort cities based on the selected key (column) and direction
     const sortedCities = [...cities].sort((a, b) => {
       if (a[key] < b[key]) {
         return direction === "asc" ? -1 : 1;
@@ -61,6 +67,7 @@ const Home = () => {
       return 0;
     });
 
+    // Update sort configuration and set sorted cities
     setSortConfig({ key, direction });
     setCities(sortedCities);
   };
@@ -74,8 +81,8 @@ const Home = () => {
       const data = await response.json();
       const { results } = data;
       const options = results.map((city) => ({
-        label: city.name + ", " + city.cou_name_en, // City name and country
-        value: city.name.toLowerCase(),
+        label: city.name + ", " + city.cou_name_en, // Display city name and country
+        value: city.name.toLowerCase(), // Use city name as value
       }));
 
       return {
@@ -90,7 +97,7 @@ const Home = () => {
   // Handle navigation to detailed city weather page
   const handleCityChange = (selectedOption) => {
     const { value } = selectedOption;
-    history.push(`/weather/${value}`);
+    history.push(`/weather/${value}`); // Navigate to the weather page for the selected city
   };
 
   return (
@@ -102,7 +109,7 @@ const Home = () => {
 
         <div className="select-container">
           <AsyncPaginate
-            value={selectedCity}
+            value=""
             loadOptions={loadOptions}
             onChange={handleCityChange}
             debounceTimeout={500}
