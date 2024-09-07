@@ -20,9 +20,9 @@ const CityRow = ({ city, index }) => {
         temp_max: tempMax,
         temp: currTemp,
       } = data.main;
-      setCurrTemp(currTemp);
-      setTempMax(tempMax);
-      setTempMin(tempMin);
+      setCurrTemp(Math.round(currTemp, 0));
+      setTempMax(Math.round(tempMax, 0));
+      setTempMin(Math.round(tempMin, 0));
     } else {
       setCurrTemp("-");
       setTempMax("-");

@@ -15,6 +15,7 @@
     "js-cookie": "3.0.0",
     "msw": "0.33.0",
     "react": "17.0.1",
+    "react-accessible-accordion": "^5.0.0",
     "react-dom": "17.0.1",
     "react-icons": "4.2.0",
     "react-infinite-scroll-component": "^6.1.0",

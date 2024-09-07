@@ -106,8 +106,8 @@ const Home = () => {
                   <th>City Name</th>
                   <th>Country</th>
                   <th>Timezone</th>
-                  <th>Current Temp</th>
-                  <th> Min/Max Temp</th>
+                  <th>Current Temp in Celisus</th>
+                  <th> Min/Max Temp in Celisus</th>
                 </tr>
               </thead>
               <tbody>

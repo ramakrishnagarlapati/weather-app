@@ -1,0 +1,75 @@
+.title {
+  font-size: 18px;
+  margin: 16px 0;
+  font-weight: 700;
+}
+.hourly-item {
+  background-color: #e8f1fa;
+  border-radius: 15px;
+  height: 40px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 30px 15px;
+}
+
+.icon-small {
+  width: 40px;
+}
+.day {
+  color: #212121;
+  flex: 1 1;
+  font-weight: 600;
+  margin-left: 15px;
+}
+.desc {
+  flex: 1 1;
+  margin-right: 15px;
+  text-align: right;
+}
+.min-max {
+  color: #757575;
+}
+
+.daily-details-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 15px;
+  padding: 5px 15px;
+}
+.daily-details-grid-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.daily-details-grid-item label:first-child {
+  color: #757575;
+  font-size: 14px;
+}
+.daily-details-grid-item label:last-child {
+  color: #212121;
+  font-size: 14px;
+}
+@media screen and (min-width: 768px) {
+  .hourly-item {
+    font-size: 16px;
+    padding: 30px;
+  }
+  .daily-details-grid {
+    column-gap: 50px;
+  }
+  .daily-details-grid-item {
+    height: 30px;
+  }
+
+  .daily-details-grid-item label:first-child {
+    font-size: 16px;
+  }
+  .daily-details-grid-item label:last-child {
+    font-size: 16px;
+  }
+}
