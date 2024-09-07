@@ -17,7 +17,7 @@
   background-color: aliceblue;
   padding: 14px;
   border-radius: 10px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
 }
 .home-page-heading {
   max-width: 500px;
@@ -30,6 +30,14 @@
   width: 100%;
   max-width: 500px;
   margin: 25px 0;
+}
+.custom-table-header {
+  cursor: pointer;
+}
+.info-text {
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: rgba(100, 100, 111);
 }
 @media screen and (min-width: 768px) {
   .home-page-container {

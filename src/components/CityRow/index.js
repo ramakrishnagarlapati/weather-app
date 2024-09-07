@@ -20,9 +20,9 @@ const CityRow = ({ city, index }) => {
         temp_max: tempMax,
         temp: currTemp,
       } = data.main;
-      setCurrTemp(Math.round(currTemp, 0));
-      setTempMax(Math.round(tempMax, 0));
-      setTempMin(Math.round(tempMin, 0));
+      setCurrTemp(String(Math.round(currTemp, 0)) + "°C");
+      setTempMax(String(Math.round(tempMin, 0)) + "°C");
+      setTempMin(String(Math.round(tempMax, 0)) + "°C");
     } else {
       setCurrTemp("-");
       setTempMax("-");
@@ -46,7 +46,7 @@ const CityRow = ({ city, index }) => {
       <td>{countryName}</td>
       <td>{timezone}</td>
       <td>{currTemp}</td>
-      <td>{tempMax && tempMin && `${tempMin}/${tempMax}`}</td>
+      <td>{tempMax && tempMin && `${tempMin} / ${tempMax}`}</td>
     </tr>
   );
 };

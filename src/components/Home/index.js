@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { useHistory } from "react-router-dom";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import CityRow from "../CityRow";
 import "./index.css";
@@ -14,6 +15,9 @@ const Home = () => {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [selectedCity, setSelectedCity] = useState(null);
+
+  // Sorting state
+  const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
 
   // Fetch cities data for the infinite scroll
 
@@ -39,6 +43,27 @@ const Home = () => {
     fetchCities();
     setIsLoading(false);
   }, []);
+
+  // Sorting function
+  const sortCities = (key) => {
+    let direction = "asc";
+    if (sortConfig.key === key && sortConfig.direction === "asc") {
+      direction = "desc";
+    }
+
+    const sortedCities = [...cities].sort((a, b) => {
+      if (a[key] < b[key]) {
+        return direction === "asc" ? -1 : 1;
+      }
+      if (a[key] > b[key]) {
+        return direction === "asc" ? 1 : -1;
+      }
+      return 0;
+    });
+
+    setSortConfig({ key, direction });
+    setCities(sortedCities);
+  };
 
   // Fetch suggestions as the user types
   const loadOptions = async (searchQuery, loadedOptions) => {
@@ -99,15 +124,32 @@ const Home = () => {
               </p>
             }
           >
+            <span className="info-text">*Column Headers are sortable</span>
             <table className="table table-striped table-bordered table-hover">
               <thead>
                 <tr className="table-primary">
                   <th></th>
-                  <th>City Name</th>
-                  <th>Country</th>
-                  <th>Timezone</th>
-                  <th>Current Temp in Celisus</th>
-                  <th> Min/Max Temp in Celisus</th>
+                  <th
+                    className="custom-table-header"
+                    onClick={() => sortCities("name")}
+                  >
+                    {" "}
+                    City Name
+                  </th>
+                  <th
+                    className="custom-table-header"
+                    onClick={() => sortCities("cou_name_en")}
+                  >
+                    Country
+                  </th>
+                  <th
+                    className="custom-table-header"
+                    onClick={() => sortCities("timezone")}
+                  >
+                    Timezone
+                  </th>
+                  <th>Current Temp</th>
+                  <th> Min/Max Temp</th>
                 </tr>
               </thead>
               <tbody>
